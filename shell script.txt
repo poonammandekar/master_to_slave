@@ -1,9 +1,0 @@
-echo "Deploying WAR to EC2..."
-ssh-keyscan 54.180.120.161 >> ~/.ssh/known_hosts
-
-ssh -i "$SSH_KEY"  ec2-user@54.180.120.161 "rm -rf /mnt/servers/apache-tomcat-10.1.41/webapps/LoginWebApp.war"
-
-scp -i "$SSH_KEY" /mnt/project/target/LoginWebApp.war ec2-user@54.180.120.161:/mnt/servers/apache-tomcat-10.1.41/webapps/
-
-
-echo "Deployment completed."

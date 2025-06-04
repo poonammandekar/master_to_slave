@@ -1,0 +1,21 @@
+echo "Deploying WAR to slave1"
+ssh-keyscan 43.201.65.21 >> ~/.ssh/known_hosts
+
+ssh -i "$SSH_KEY"  ec2-user@43.201.65.21 "rm -rf /mnt/servers/apache-tomcat-10.1.41/webapps/LoginWebApp.war"
+
+scp -i "$SSH_KEY" /mnt/project/target/LoginWebApp.war ec2-user@43.201.65.21:/mnt/servers/apache-tomcat-10.1.41/webapps/
+
+
+echo "Deployment completed."
+
+
+
+echo "Deploying WAR to slave2"
+ssh-keyscan 15.164.222.220 >> ~/.ssh/known_hosts
+
+ssh -i "$SSH_KEY"  ec2-user@15.164.222.220 "rm -rf /mnt/servers/apache-tomcat-10.1.41/webapps/LoginWebApp.war"
+
+scp -i "$SSH_KEY" /mnt/project/target/LoginWebApp.war ec2-user@15.164.222.220:/mnt/servers/apache-tomcat-10.1.41/webapps/
+
+
+echo "Deployment completed."
